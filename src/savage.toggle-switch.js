@@ -10,12 +10,14 @@ if(typeof SaVaGe !== 'object') SaVaGe = {};
  * 'value' (a boolean indicating the initial value of the switch, by default 'false'),
  * 'height' (a number indicating the height, in pixels, of the element, by default 50),
  * 'width' (a number indicating the width, in pixels, of the element, by default 80),
+ * 'radius' (a number indicating the radius of the lever),
  * 'border' (a number indicating the width, in pixels, the distance between the element background and the switch's button, by default 5),
  * 'duration' (a number indicating the number of milliseconds that the toggle animation must last, by default 250),
  * 'colors' (an object with the attributes 'backLeft', 'foreLeft', 'backRight' and 'foreRight' indicating the colors of the element in each state) and
  * 'onChange' (a callback function which is invoked every time that the element is clicked).
  * 
  * The object returned by this function contains the methods:
+ * 'svg', and instance of the SVG object created with D3.js,
  * 'getValue()', for get the current state of the switch,
  * 'serValue(newVal)', for change the state of the switch and
  * 'remove()', for remove the element from the document.
@@ -84,6 +86,7 @@ SaVaGe.ToggleSwitch = function(params) {
     
     // Define result's object.
     var res = {
+        'svg' : svg,
         'getValue': function() { return atRight; },
         'setValue': setAtRight,
         'remove': function() { svg.remove(); }

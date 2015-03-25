@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
-        <title>SaVaGe: Web widgets with SVG - Toggle switch widget</title>
+        <title>SaVaGe: Web widgets with SVG - Progress pie chart widget</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="icon" type="image/png" href="../img/logo.ico"/>
@@ -31,36 +31,32 @@
             </div>
         </nav>
         
-        <h1>Toogle switch</h1>
+        <h1>Progress pie chart</h1>
         
         <h2>Examples</h2>
         
         <div id="basic"></div>
-        <div id="start-on"></div>
+        <div id="small"></div>
+        <div id="big"></div>
         <br/>
-        <div id="bigger"></div>
+        <div id="donut"></div>
         <br/>
-        <div id="slow"></div>
-        <div id="fast"></div>
+        <div id="rotated"></div>
         <br/>
         <div id="colored"></div>
         <br/>
-        <div id="small-lever"></div>
-        <div id="big-lever"></div>
-        <br/>
-        <div id="listener"></div>
+        <div id="label-basic"></div>
+        <div id="label-custom"></div>
         
         <script type="text/javascript">
-            SaVaGe.ToggleSwitch({container: "#basic"});
-            SaVaGe.ToggleSwitch({container: "#start-on", value:true});
-            SaVaGe.ToggleSwitch({container: "#bigger", width: 100, height: 60});
-            SaVaGe.ToggleSwitch({container: "#slow", duration: 1000});
-            SaVaGe.ToggleSwitch({container: "#fast", duration: 100});
-            SaVaGe.ToggleSwitch({container: "#colored", colors: {backLeft:'blue', foreLeft:'green', backRight:'red', foreRight:'yellow'}});
-            SaVaGe.ToggleSwitch({container: "#small-lever", radius: 15});
-            SaVaGe.ToggleSwitch({container: "#big-lever", radius: 20, height: 20, width: 100, colors: {foreLeft:'#aaa', foreRight:'#888'}});
-            SaVaGe.ToggleSwitch({container: "#listener", onChange: function(toggler) { alert("The switch was clicked\nHis new value is: " + toggler.getValue()); }});
-            SaVaGe.ToggleSwitch({value: true, width: 100, height: 60, border: 2, duration: 1000, colors: {backLeft:'blue', foreLeft:'green', backRight:'red', foreRight:'yellow'}});
+            SaVaGe.ProgressPieChart({container: "#basic"});
+            SaVaGe.ProgressPieChart({container: "#small", value: 0.7, radius: 10});
+            SaVaGe.ProgressPieChart({container: "#big", value: 0.9, radius: 50});
+            SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
+            SaVaGe.ProgressPieChart({container: "#rotated", radius: 30, rotate: 180});
+            SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
+            SaVaGe.ProgressPieChart({container: "#label-basic", label: {show: true}});
+            SaVaGe.ProgressPieChart({container: "#label-custom", label: {show: true, size: "30px", color:"white", family: "Verdana"}, radius: 50});
         </script>
     </body>
 </html>

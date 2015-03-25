@@ -3,7 +3,7 @@ SaVaGe
 
 _Web widgets implemented with SVG_
 
-**­­SaVaGe** is a library of web widgets implemented with SVG (using _D3.js_).
+**SaVaGe** is a library of web widgets implemented with SVG (using _D3.js_).
 
 Why SVG? Because using vector graphics you can: easily change the size and colors of the widgets, and you don't need to include image or stylesheet files.
 
