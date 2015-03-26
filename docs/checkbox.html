@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
-        <title>SaVaGe: Web widgets with SVG - Progress pie chart widget</title>
+        <title>SaVaGe: Web widgets with SVG - Checkbox widget</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="icon" type="image/png" href="../img/logo.ico"/>
@@ -12,7 +12,7 @@
         <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
         
         <script src="../lib/d3/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../src/savage.progress-pie-chart.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../src/savage.checkbox.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -32,32 +32,42 @@
             </div>
         </nav>
         
-        <h1>Progress pie chart</h1>
+        <h1>Checkbox</h1>
         
         <h2>Examples</h2>
         
         <div id="basic"></div>
-        <div id="small"></div>
+        <div id="cross"></div>
+        <div id="fill"></div>
+        <br/>
+        <div id="tristate"></div>
+        <br/>
         <div id="big"></div>
-        <br/>
-        <div id="donut"></div>
-        <br/>
-        <div id="rotated"></div>
         <br/>
         <div id="colored"></div>
         <br/>
-        <div id="label-basic"></div>
-        <div id="label-custom"></div>
+        <div id="radio"></div>
+        <div id="radio1"></div>
+        <div id="radio2"></div>
+        <div id="radio3"></div>
         
         <script type="text/javascript">
-            SaVaGe.ProgressPieChart({container: "#basic"});
-            SaVaGe.ProgressPieChart({container: "#small", value: 0.7, radius: 10});
-            SaVaGe.ProgressPieChart({container: "#big", value: 0.9, radius: 50});
-            SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
-            SaVaGe.ProgressPieChart({container: "#rotated", radius: 30, rotate: 180});
-            SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
-            SaVaGe.ProgressPieChart({container: "#label-basic", label: {show: true}});
-            SaVaGe.ProgressPieChart({container: "#label-custom", label: {show: true, size: "30px", color:"white", family: "Verdana"}, radius: 50});
+            SaVaGe.CheckBox({container: "#basic"});
+            SaVaGe.CheckBox({container: "#fill", marks:{checked: "fill"}});
+            SaVaGe.CheckBox({container: "#cross", marks:{checked: "cross"}});
+            SaVaGe.CheckBox({container: "#tristate", tristate: true});
+            SaVaGe.CheckBox({container: "#big", size:100, border:{width: 10}});
+            SaVaGe.CheckBox({container: "#colored", tristate: true, colors:{back: 'lightgray', border:'gray', tick:'green', cross:'red'}});
+            SaVaGe.CheckBox({container: "#radio", size: 30, border:{radius: 15}, marks:{checked: "fill"}});
+            
+            var radioGroup = [];
+            var radioGroupSomething = function(radio) {
+                for(var i=0; i<radioGroup.length; i++)
+                    if(radioGroup[i] !== radio) radioGroup[i].setValue(0);
+            };
+            radioGroup.push( SaVaGe.CheckBox({container: "#radio1", onChange: radioGroupSomething}) );
+            radioGroup.push( SaVaGe.CheckBox({container: "#radio2", onChange: radioGroupSomething}) );
+            radioGroup.push( SaVaGe.CheckBox({container: "#radio3", onChange: radioGroupSomething}) );
         </script>
     </body>
 </html>
