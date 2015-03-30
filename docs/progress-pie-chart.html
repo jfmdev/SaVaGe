@@ -26,9 +26,17 @@
             h1 {
                 margin-top: 0;
             }
-            pre {
+            pre,
+            div.result {
                 padding: 0;
                 margin: 5px;
+            }
+            div.result {
+                text-align: center;
+            }
+            div.demo-title {
+                text-align: center;
+                font-family: "Lucida Console", Monaco, monospace;
             }
             div.content {
                 padding: 5px;
@@ -54,32 +62,143 @@
         </nav>
         <div class="content col-md-8 col-md-offset-2">
             <h1>Progress pie chart</h1>
+            
+            <p>The <strong>progress pie chart</strong> widget, from the <a href="../index.html">SaVaGe</a> library, if a simple and easy to use 
+            pie chart with only two slices, that is commonly used to show the progress or level of completition of a task or event.</p>
 
+            <h2>How to use it</h2>
+
+            In order to use it, you must only include the <em>D3.js</em> and <em>SaVaGe</em> scripts in your page.
+
+<pre><code class="html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src="d3.v3.min.js" type="text/javascript"&gt;&lt;/script&gt;
+        &lt;script src="savage.progress-pie-chart.min.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript"&gt;
+            // Add a pie chart at the end of 'body'.
+            SaVaGe.ProgressPieChart();
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
             <h2>Examples</h2>
 
-            <div id="basic"></div>
-            <div id="small"></div>
-            <div id="big"></div>
-            <br/>
-            <div id="donut"></div>
-            <br/>
-            <div id="rotated"></div>
-            <br/>
-            <div id="colored"></div>
-            <br/>
-            <div id="label-basic"></div>
-            <div id="label-custom"></div>
+            <h3>Basics</h3>
+            
+            <p>The <em>ProgressPieChart()</em> method accepts, as paramater, a single object, whose attributes can be used to customize the widget.</p>
+            <p>The most fundamental of them are the <em>container</em> attribute, which allows to define (using CSS selectors) the element which
+            is going to serve as container for the widget, and the <em>value</em> attribute (a value between 0 and 1), 
+            which is used to define progress that must be represented by the slices.</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;basic1&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;basic2&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.ProgressPieChart({container: &#x22;#basic1&#x22;, value: 0.9});
+    SaVaGe.ProgressPieChart({container: &#x22;#basic2&#x22;, value: 0.4});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="basic1" class="result"></div>
+                    <div id="basic2" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.ProgressPieChart({container: "#basic1", value: 0.9});
+                        SaVaGe.ProgressPieChart({container: "#basic2", value: 0.4});
+                    </script>                    
+                </div>
+            </div>
+            
+            <h3>Radius</h3>
+            
+            <p>The <em>radius</em> attributes allows to define the size of the pie chart while the <em>innerRadius</em> allows to define
+            the radius of the hole inside the chart (in case that you want to create a donut chart).</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;small&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;big&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;donut&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.ProgressPieChart({container: &#x22;#small&#x22;, radius: 10});
+    SaVaGe.ProgressPieChart({container: &#x22;#big&#x22;, radius: 40});
+    SaVaGe.ProgressPieChart({container: &#x22;#donut&#x22;, radius: 30, innerRadius: 20});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="small" class="result"></div>
+                    <div id="big" class="result"></div>
+                    <div id="donut" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.ProgressPieChart({container: "#small", radius: 10});
+                        SaVaGe.ProgressPieChart({container: "#big", radius: 40});
+                        SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
+                    </script>                    
+                </div>
+            </div>
+            
+            <h3>Rotation and colors</h3>
+            
+            <p>The <em>rotate</em> attributes allows to define the degrees that the pie chart must be rotated (over his own axis).
+             The <em>colors</em> attribute allows to specify the color of each slice.</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;rotated&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;colored&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.ProgressPieChart({container: &#x22;#rotated&#x22;, rotate: 180});
+    SaVaGe.ProgressPieChart({container: &#x22;#colored&#x22;, colors: {completed: &#x22;darkblue&#x22;, pending: &#x22;lightblue&#x22;}});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="rotated" class="result"></div>
+                    <div id="colored" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.ProgressPieChart({container: "#rotated", rotate: 180});
+                        SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
+                    </script>                    
+                </div>
+            </div>
 
-            <script type="text/javascript">
-                SaVaGe.ProgressPieChart({container: "#basic"});
-                SaVaGe.ProgressPieChart({container: "#small", value: 0.7, radius: 10});
-                SaVaGe.ProgressPieChart({container: "#big", value: 0.9, radius: 50});
-                SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
-                SaVaGe.ProgressPieChart({container: "#rotated", radius: 30, rotate: 180});
-                SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
-                SaVaGe.ProgressPieChart({container: "#label-basic", label: {show: true}});
-                SaVaGe.ProgressPieChart({container: "#label-custom", label: {show: true, size: "30px", color:"white", family: "Verdana"}, radius: 50});
-            </script>
+            <h3>Labels</h3>
+            
+            <p>The <em>label</em> attributes allows to define if a label must be show, in the middle of the pie chart, and which with
+            size, color and font.</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;label1&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;label2&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;label3&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.ProgressPieChart({container: &#x22;#label1&#x22;, label: {show: true}});
+    SaVaGe.ProgressPieChart({container: &#x22;#label2&#x22;, label: {show: true, text: &#x22;Good!&#x22;}});
+    SaVaGe.ProgressPieChart({container: &#x22;#label3&#x22;, label: {show: true, size: &#x22;20px&#x22;, color:&#x22;white&#x22;, family: &#x22;Verdana&#x22;}});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="label1" class="result"></div>
+                    <div id="label2" class="result"></div>
+                    <div id="label3" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.ProgressPieChart({container: "#label1", label: {show: true}});
+                        SaVaGe.ProgressPieChart({container: "#label2", label: {show: true, text: "Good!"}});
+                        SaVaGe.ProgressPieChart({container: "#label3", label: {show: true, size: "20px", color:"white", family: "Verdana"}});
+                    </script>                    
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
