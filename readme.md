@@ -34,7 +34,7 @@ Widgets
 
 The widgets implemented (so far) are the following:
 
-* [Toggle switch](http://jfmdev.github.io/SaVaGe/toggle-switch.html "SaVaGe - Toggle switch widget")
+* [Toggle switch](http://jfmdev.github.io/SaVaGe/docs/toggle-switch.html "SaVaGe - Toggle switch widget")
 * [Progress pie chart](http://jfmdev.github.io/SaVaGe/docs/progress-pie-chart.html "SaVaGe - Progress pie chart widget")
 * [Checkbox](http://jfmdev.github.io/SaVaGe/docs/checkbox.html "SaVaGe - Checkbox widget")
 
