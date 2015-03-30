@@ -9,11 +9,12 @@
 if(typeof SaVaGe !== 'object') SaVaGe = {};
 
 /**
- * Creates a SVG element representing a toggle switch.
+ * Creates a SVG element representing a bheckbox.
  * 
  * The parameter must be an object with the following attributes:
  * 'container' (a selector of the element where the element must be appended),
  * 'size' (the widht and height, in pixels, of the checkbox, by default 25),
+ * 'value' (a number between 0 and 2, indicating the initial state of the checkbox),
  * 'border' (an object with the numerical attributes 'width' and 'radius' indicating the width of the checkbox's border and the radius of his corners,
  * 'tristate' (a boolean indicating if the chechbox must have three states [unchecked, checked and cancelled], instead of only two [checked and unchecked]),
  * 'marks' (an object with the attributes 'unchecked', 'checked' and 'cancelled', which indicates which kind of mark must be used for represent each state, their possible values are 'empty', 'tick', 'cross' and 'fill'),
@@ -33,6 +34,7 @@ SaVaGe.CheckBox = function(params) {
     if(typeof params !== 'object') params = {};
     if(typeof params.container !== 'string') params.container = "body";
     if(typeof params.size !== 'number') params.size = 25;
+    if(typeof params.value !== 'number') params.value = 0;
     if(typeof params.border !== 'object') params.border = {};
     if(typeof params.border.radius !== 'number') params.border.radius = 0;
     if(typeof params.border.width !== 'number') params.border.width = 1;
@@ -135,6 +137,9 @@ SaVaGe.CheckBox = function(params) {
                 .attr("height", params.size - space*2);            
         }
     };
+    
+    // Set initial state.
+    setState(params.value);
     
     // Define result's object.
     var res = {

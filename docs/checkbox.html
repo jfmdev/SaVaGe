@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
-        <title>SaVaGe: Web widgets with SVG - Checkbox widget</title>
+        <title>SaVaGe - Checkbox widget</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="icon" type="image/png" href="../img/logo.ico"/>
@@ -12,7 +12,36 @@
         <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
         
         <script src="../lib/d3/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../src/savage.checkbox.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/savage.checkbox.min.js" type="text/javascript" charset="utf-8"></script>
+            
+        <link rel="stylesheet" href="../lib/highlights/styles/github.css" />
+        <script type="text/javascript" src="../lib/highlights/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        
+        <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+            h1, h2, h3 {
+                font-family: 'Lobster Two', cursive;
+            }
+            h1 {
+                margin-top: 0;
+            }
+            pre,
+            div.result {
+                padding: 0;
+                margin: 5px;
+            }
+            div.result {
+                text-align: center;
+            }
+            div.demo-title {
+                text-align: center;
+                font-family: "Lucida Console", Monaco, monospace;
+            }
+            div.content {
+                padding: 5px;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -31,43 +60,178 @@
                 </div>
             </div>
         </nav>
-        
-        <h1>Checkbox</h1>
-        
-        <h2>Examples</h2>
-        
-        <div id="basic"></div>
-        <div id="cross"></div>
-        <div id="fill"></div>
-        <br/>
-        <div id="tristate"></div>
-        <br/>
-        <div id="big"></div>
-        <br/>
-        <div id="colored"></div>
-        <br/>
-        <div id="radio"></div>
-        <div id="radio1"></div>
-        <div id="radio2"></div>
-        <div id="radio3"></div>
-        
-        <script type="text/javascript">
-            SaVaGe.CheckBox({container: "#basic"});
-            SaVaGe.CheckBox({container: "#fill", marks:{checked: "fill"}});
-            SaVaGe.CheckBox({container: "#cross", marks:{checked: "cross"}});
-            SaVaGe.CheckBox({container: "#tristate", tristate: true});
-            SaVaGe.CheckBox({container: "#big", size:100, border:{width: 10}});
-            SaVaGe.CheckBox({container: "#colored", tristate: true, colors:{back: '#eef', border:'blue', tick:'green', cross:'red'}});
-            SaVaGe.CheckBox({container: "#radio", size: 30, border:{radius: 15}, marks:{checked: "fill"}});
+        <div class="content col-md-8 col-md-offset-2">
+            <h1>Checkbox</h1>
+
+            <p>The <strong>checkbox</strong> widget, from the <a href="../index.html">SaVaGe</a> library, allows you to create
+            fully customizable checkbox inputs.</p>
+            <p>Unlike the default's checkbox that you can create with the <em>&lt;input&gt;</em> element, the SaVaGe's checkbox
+            can be configured to change his size, his colors and his marks. You can also define three-states checkboxs and create
+            option group.</p>
+
+            <h2>How to use it</h2>
+
+            In order to use it, you must only include the <em>D3.js</em> and <em>SaVaGe</em> scripts in your page.
+
+<pre><code class="html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src="d3.v3.min.js" type="text/javascript"&gt;&lt;/script&gt;
+        &lt;script src="savage.checkbox.min.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript"&gt;
+            // Add a checkbox at the end of 'body'.
+            SaVaGe.Checkbox();
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
             
-            var radioGroup = [];
-            var radioGroupSomething = function(radio) {
-                for(var i=0; i<radioGroup.length; i++)
-                    if(radioGroup[i] !== radio) radioGroup[i].setValue(0);
-            };
-            radioGroup.push( SaVaGe.CheckBox({container: "#radio1", onChange: radioGroupSomething}) );
-            radioGroup.push( SaVaGe.CheckBox({container: "#radio2", onChange: radioGroupSomething}) );
-            radioGroup.push( SaVaGe.CheckBox({container: "#radio3", onChange: radioGroupSomething}) );
-        </script>
+            <h2>Examples</h2>
+
+            <h3>Basics</h3>
+            
+            <p>The <em>Checkbox()</em> method accepts, as paramater, a single object, whose attributes can be used to customize the widget.</p>
+            <p>The most fundamental of them is the <em>container</em> attribute, which allows to define, using CSS selectors, the element which
+            is going to serve as container for the widget. If this parameter is not specified, the widget is going to appended at the end
+            of <em>&lt;body&gt;</em>.</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;basic&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.CheckBox({container: &#x22;#basic&#x22;});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="basic" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.CheckBox({container: "#basic"});
+                    </script>                    
+                </div>
+            </div>
+            
+            <h3>Initial value and three-state checkbox</h3>
+
+            <p>With the <em>value</em> attribute, you can specify the initial value of the checkbox
+            while the <em>tristate</em> attribute allows you to create three-states checkboxs (which besides the 'checked' and 'unchecked' states
+            it also allows the 'cancelled' state).</p>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;checked&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;tristate&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.CheckBox({container: &#x22;#checked&#x22;, value: 1});
+    SaVaGe.CheckBox({container: &#x22;#tristate&#x22;, tristate: true, value: 2});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                        <div id="checked" class="result"></div>
+                        <div id="tristate" class="result"></div>
+                        <script type="text/javascript">
+                            SaVaGe.CheckBox({container: "#checked", value: 1});
+                            SaVaGe.CheckBox({container: "#tristate", tristate: true, value: 2});
+                        </script>                    
+                </div>
+            </div>
+            
+            <h3>Changing the check marks</h3>
+            
+            <p>By default, the check mark is a tick (and a cross for the 'cancelled' state in tristate checkboxs), however this can be
+            changed by using the <em>marks</em> attribute.</p>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;fill&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;cross&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.CheckBox({container: &#x22;#fill&#x22;, marks:{checked: &#x22;tick&#x22;, unchecked:&#x22;cross&#x22;}});
+    SaVaGe.CheckBox({container: &#x22;#cross&#x22;, tristate:true, marks:{checked: &#x22;cross&#x22;, cancelled:&#x22;fill&#x22;}, value:2});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="fill" class="result"></div>
+                    <div id="cross" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.CheckBox({container: "#fill", marks:{checked: "tick", unchecked:"cross"}});
+                        SaVaGe.CheckBox({container: "#cross", tristate:true, marks:{checked: "cross", cancelled:"fill"}, value:2});
+                    </script>                    
+                </div>
+            </div>
+            
+            <h3>Size, borders and colors</h3>
+            
+            <p>With the <em>size</em> attribute you can change the width and height of the checkbox,
+            with the <em>border</em> atrribute you can specify the width and the radius of the checkbox's border,
+            and with the <em>colors</em> attribute you can define the different colors used when drawing the checkbox.</p>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;big&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;colored&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    SaVaGe.CheckBox({container: &#x22;#big&#x22;, size:100, border:{width: 10, radius: 20}});
+    SaVaGe.CheckBox({container: &#x22;#colored&#x22;, tristate: true, colors:{back: &#x27;#eef&#x27;, border:&#x27;blue&#x27;, tick:&#x27;green&#x27;, cross:&#x27;red&#x27;}});
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="big" class="result"></div>
+                    <div id="colored" class="result"></div>
+                    <script type="text/javascript">
+                        SaVaGe.CheckBox({container: "#big", size:80, border:{width: 8, radius: 20}});
+                        SaVaGe.CheckBox({container: "#colored", tristate: true, colors:{back: '#eef', border:'blue', tick:'green', cross:'red'}});
+                    </script>                    
+                </div>
+            </div>
+            
+            <h3>Return value and option groups</h3>
+            
+            <p>The <em>Checkbox()</em> methods always returns a object with the methods <em>setValue()</em>, <em>getValue()</em> and <em>remove()</em>.
+            This object can be used to further extends the features of the widgets, such as creating option groups.</p>
+            
+<div class="row">
+                <div class="col-md-8">
+                    <div class="demo-title">Code</div>
+<pre><code class="html">&#x3C;div id=&#x22;radio1&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;radio2&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;div id=&#x22;radio3&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script type=&#x22;text/javascript&#x22;&#x3E;
+    var radioGroup = [];
+    var radioGroupSomething = function(radio) {
+        for(var i=0; i&#x3C;radioGroup.length; i++)
+            if(radioGroup[i] !== radio) radioGroup[i].setValue(0);
+    };
+    radioGroup.push( SaVaGe.CheckBox({container: &#x22;#radio1&#x22;, size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+    radioGroup.push( SaVaGe.CheckBox({container: &#x22;#radio2&#x22;, size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+    radioGroup.push( SaVaGe.CheckBox({container: &#x22;#radio3&#x22;, size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+&#x3C;/script&#x3E;</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-title">Result</div><br/>
+                    <div id="radio1" class="result"></div>
+                    <div id="radio2" class="result"></div>
+                    <div id="radio3" class="result"></div>
+                    <script type="text/javascript">
+                        var radioGroup = [];
+                        var radioGroupSomething = function(radio) {
+                            for(var i=0; i<radioGroup.length; i++)
+                                if(radioGroup[i] !== radio) radioGroup[i].setValue(0);
+                        };
+                        radioGroup.push( SaVaGe.CheckBox({container: "#radio1", size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+                        radioGroup.push( SaVaGe.CheckBox({container: "#radio2", size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+                        radioGroup.push( SaVaGe.CheckBox({container: "#radio3", size: 30, border:{radius: 15}, onChange: radioGroupSomething}) );
+                    </script>
+                </div>
+            </div>
+
+        </div>
     </body>
 </html>

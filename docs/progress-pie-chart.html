@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
-        <title>SaVaGe: Web widgets with SVG - Progress pie chart widget</title>
+        <title>SaVaGe - Progress pie chart widget</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="icon" type="image/png" href="../img/logo.ico"/>
@@ -12,7 +12,28 @@
         <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
         
         <script src="../lib/d3/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../src/savage.progress-pie-chart.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../dist/savage.progress-pie-chart.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        <link rel="stylesheet" href="../lib/highlights/styles/github.css" />
+        <script type="text/javascript" src="../lib/highlights/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        
+        <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+            h1, h2, h3 {
+                font-family: 'Lobster Two', cursive;
+            }
+            h1 {
+                margin-top: 0;
+            }
+            pre {
+                padding: 0;
+                margin: 5px;
+            }
+            div.content {
+                padding: 5px;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -31,33 +52,34 @@
                 </div>
             </div>
         </nav>
-        
-        <h1>Progress pie chart</h1>
-        
-        <h2>Examples</h2>
-        
-        <div id="basic"></div>
-        <div id="small"></div>
-        <div id="big"></div>
-        <br/>
-        <div id="donut"></div>
-        <br/>
-        <div id="rotated"></div>
-        <br/>
-        <div id="colored"></div>
-        <br/>
-        <div id="label-basic"></div>
-        <div id="label-custom"></div>
-        
-        <script type="text/javascript">
-            SaVaGe.ProgressPieChart({container: "#basic"});
-            SaVaGe.ProgressPieChart({container: "#small", value: 0.7, radius: 10});
-            SaVaGe.ProgressPieChart({container: "#big", value: 0.9, radius: 50});
-            SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
-            SaVaGe.ProgressPieChart({container: "#rotated", radius: 30, rotate: 180});
-            SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
-            SaVaGe.ProgressPieChart({container: "#label-basic", label: {show: true}});
-            SaVaGe.ProgressPieChart({container: "#label-custom", label: {show: true, size: "30px", color:"white", family: "Verdana"}, radius: 50});
-        </script>
+        <div class="content col-md-8 col-md-offset-2">
+            <h1>Progress pie chart</h1>
+
+            <h2>Examples</h2>
+
+            <div id="basic"></div>
+            <div id="small"></div>
+            <div id="big"></div>
+            <br/>
+            <div id="donut"></div>
+            <br/>
+            <div id="rotated"></div>
+            <br/>
+            <div id="colored"></div>
+            <br/>
+            <div id="label-basic"></div>
+            <div id="label-custom"></div>
+
+            <script type="text/javascript">
+                SaVaGe.ProgressPieChart({container: "#basic"});
+                SaVaGe.ProgressPieChart({container: "#small", value: 0.7, radius: 10});
+                SaVaGe.ProgressPieChart({container: "#big", value: 0.9, radius: 50});
+                SaVaGe.ProgressPieChart({container: "#donut", radius: 30, innerRadius: 20});
+                SaVaGe.ProgressPieChart({container: "#rotated", radius: 30, rotate: 180});
+                SaVaGe.ProgressPieChart({container: "#colored", colors: {completed: "darkblue", pending: "lightblue"}});
+                SaVaGe.ProgressPieChart({container: "#label-basic", label: {show: true}});
+                SaVaGe.ProgressPieChart({container: "#label-custom", label: {show: true, size: "30px", color:"white", family: "Verdana"}, radius: 50});
+            </script>
+        </div>
     </body>
 </html>
