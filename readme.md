@@ -1,3 +1,5 @@
+> **Notice:** this project was archived due to lack of interest.
+
 SaVaGe
 ======
 
